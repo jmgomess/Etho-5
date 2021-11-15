@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vencedor__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description>Vencedor do round</description>
+    <externalId>false</externalId>
+    <label>Vencedor</label>
+    <referenceTo>Jogador__c</referenceTo>
+    <relationshipLabel>Rounds</relationshipLabel>
+    <relationshipName>Rounds</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
