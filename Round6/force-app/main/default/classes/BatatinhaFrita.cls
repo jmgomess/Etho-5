@@ -1,5 +1,4 @@
-public class BatatinhaFrita implements IPartida
-{
+public class BatatinhaFrita implements IPartida {
     public void execute(Id idPartida)
     {
         ParticipantesPartida__c[] participantes = [SELECT Jogador__c FROM ParticipantesPartida__c WHERE Partida__c = :idPartida];
