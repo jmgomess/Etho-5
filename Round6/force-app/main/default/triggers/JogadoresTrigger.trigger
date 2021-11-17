@@ -10,16 +10,18 @@ trigger JogadoresTrigger on Jogador__c (before update) {
         if (Trigger.isUpdate) {
             System.debug('BEFORE UPDATE');
 
+            JogadoresTriggerHandler.beforeUpdate(Trigger.new, Trigger.oldMap);
+            
            // List<Jogador__c> registrosAtualizados = (List<Jogador__c>) Trigger.new;
 
-            for (Jogador__c jogador : Trigger.new) {
+            /*for (Jogador__c jogador : Trigger.new) {
                 Jogador __c jogadorOld = Trigger.oldMap.get(jogador.Id);
 
                 if (!jogadorOld.Eliminado__c && jogador.Eliminado__c) {
                     jogador.DataMorte__c = System.now();
                 }
 
-            }
+            }*/
 
         }
     }
