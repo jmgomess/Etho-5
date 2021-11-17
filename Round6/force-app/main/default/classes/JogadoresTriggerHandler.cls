@@ -7,9 +7,13 @@ public without sharing class JogadoresTriggerHandler {
     }
 
     private static beforeUpdate() {
-        if (!jogadorOld.Eliminado__c && jogador.Eliminado__c) {//verifica 2 condições                
+        if (isChanged(jogadorOld.Eliminado__c, jogador.Eliminado__c)) {
             jogador.DataMorte__c = System.now(); //atribuição
         }
+    }
+
+    private static Boolean isChanged(Boolena value, Boolean valueToCompare) {
+        return value != valueToCompare;
     }
 
 }
