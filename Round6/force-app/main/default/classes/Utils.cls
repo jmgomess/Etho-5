@@ -12,4 +12,11 @@ public without sharing class Utils {
 
         return ids;
     }
+
+    //TODO: desenvolver esse cálculo aleatório.
+    //retornar número aleatório entre X e Y (inclusivo)
+    //x <= retorno <= y
+    public static Integer generateRandomIntegerBetween(Integer x, Integer y) {
+        return (y - x);
+    }
 }
