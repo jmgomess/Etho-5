@@ -1,4 +1,5 @@
 public without sharing class Utils {
+
     public static void setValue(SObject record, Schema.SObjectField field, Object value) {
         record.put(field, value);
     }
@@ -19,4 +20,11 @@ public without sharing class Utils {
     public static Integer generateRandomIntegerBetween(Integer x, Integer y) {
         return (y - x);
     }
+
+    //Criar a funcao para jogar os dados
+    public static Integer jogarDado(Integer quantidadeLados){
+       return 0;
+    }
+
+
 }

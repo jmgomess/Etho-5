@@ -26,4 +26,15 @@ public without sharing class RoundsSelector {
         ];
     }
 
+    public static List<Round__c> selectRoundsEmAndamento() {
+        return [
+            SELECT 
+                Id,
+                (SELECT Id, Forca__c, Inteligencia__c, Velocidade__c FROM Jogadores2__r WHERE Eliminado__c = false)
+            FROM Round__c
+            WHERE Status__c = 'Em andamento'
+            LIMIT 1
+        ];
+    }
+
 }
