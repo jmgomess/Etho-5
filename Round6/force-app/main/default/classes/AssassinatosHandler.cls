@@ -5,57 +5,75 @@ public without sharing class AssassinatosHandler {
         List<Round__c> listaRounds = RoundsSelector.selectRoundsEmAndamento();
 
         if(listaRounds.size() > 0){
+           
             Round__c round = listaRounds.get(0);
             List<Jogador__c> jogadores = round.getJogarores();
            
             if(jogadores.size() >= 2){
 
-            //Selecionar 2 jogadores de forma aleatório
-            Jogador__c jogadorAtaque = obterJogadorAleatorio(jogadores);
-            List<Jogador__c> listaAux = jogadores;
-            listaAux.remove(jogadorAtaque);
-            Jogador__c jogadorDefesa = obterJogadorAleatorio(listaAux);
+                booelan continuarJogada = true;
+                boolean contraAtaque = false;
 
-            Integer jogadaAtaque = Utils.jogarDado(20);
-            Integer totalAtaque = jogadaAtaque + jogadorAtaque.Forca__c;
-            Integer totalDefesa = Utils.jogarDado(10) + Utils.jogarDado(10) + jogadorDefesa.Inteligencia__c + jogadorDefesa.Velocidade__c;
-            
-            if(totalAtaque > totalDefesa){
-            //   - Para o assassino vencer: 
-            //   (1D20 + FORÇA) > (2D10 + INTELIGENCIA + VELOCIDADE)
-            //      Assassino                 Assassinado   
+                //Selecionar 2 jogadores de forma aleatório
+                Jogador__c jogadorAtaque = Utils.obterJogadorAleatorio(jogadores);
+                List<Jogador__c> listaAux = jogadores;
+                Jogador__c jogadorDefesa = Utils.obterJogadorAleatorio(listaAux.remove(jogadorAtaque));
 
-              Assassinato__c assassinato = new Assassinato__c();
-              assassinato.Assassino__c = jogadorAtaque;
-              assassinato.Assassinado__c = jogadorDefesa;
-            }else{
+                Jogador__c jogadorContraAtaqueAux;
 
-                if(jogadaAtaque == 1){
-                //Contra-ataque
-                //- Caso o assassino tire 1, o assassinado tem a chance de assassinar
-                //        (1D20 + FORÇA) > (2D10 + INTELIGENCIA + VELOCIDADE)
-                //    - Não existe contra-golpe de contra-golpe
+                while (continuarJogada){
 
+                    //Trocar a posicao dos jogadores
+                    if(contraAtaque){
+                        jogadorContraAtaqueAux = jogadorAtaque;+
+                        jogadorAtaque = jogadorDefesa;
+                        jogadorDefesa = jogadorContraAtaqueAux;
+                    }
 
+                    Integer jogadaAtaque = Utils.jogarDado(20);
+                    Integer totalAtaque = jogadaAtaque + jogadorAtaque.Forca__c;
+                    Integer totalDefesa = Utils.jogarDado(10) + Utils.jogarDado(10) + jogadorDefesa.Inteligencia__c + jogadorDefesa.Velocidade__c;
 
+                    if(totalAtaque > totalDefesa){
+                        //   - Para o assassino vencer: 
+                        //   (1D20 + FORÇA) > (2D10 + INTELIGENCIA + VELOCIDADE)
+                        //      Assassino                 Assassinado   
+                        
+                        Assassinato__c assassinato = new Assassinato__c();
+                        assassinato.Assassino__c = jogadorAtaque;
+                        assassinato.Assassinado__c = jogadorDefesa;
 
-                }else{
-                    System.debug('Não teve vencedor');
+                        continuarJogada = false;
+                        //break;
+
+                    }else{
+
+                        if(jogadaAtaque == 1 && !contraAtaque){
+                            //Contra-ataque
+                            //- Caso o assassino tire 1, o assassinado tem a chance de assassinar
+                            //- Não existe contra-golpe de contra-golpe
+                            
+                            contraAtaque = true;
+                            //continue;
+
+                        }else{
+                            continuarJogada = false;
+                            System.debug('Não teve vencedor');
+                            //break;
+                        }
+
+                    }
+                
                 }
 
-            }
-
             }else{
-                System.debug('Temos apenas 1 jogador vivo');
+                System.debug('O round tem menos de 2 jogadores vivos');
             }
+              
         }else{
             System.debug('Não tem jogadores vivos no round');
-        }
-       
-    }
-
-    private static Jogador__c obterJogadorAleatorio(List<Jogador__c> jogadores){
-        return jogadores.get(Integer.valueof((Math.random() * jogadores.size())));
+        }  
+      
     }
 
 }

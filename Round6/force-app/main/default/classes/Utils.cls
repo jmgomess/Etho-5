@@ -23,8 +23,11 @@ public without sharing class Utils {
 
     //Criar a funcao para jogar os dados
     public static Integer jogarDado(Integer quantidadeLados){
-       return 0;
+        return new Random().nextInt(quantidadeLados) + 1;
     }
 
+    public static Jogador__c obterJogadorAleatorio(List<Jogador__c> jogadores){
+        return jogadores.get(Integer.valueof((Math.random() * jogadores.size())));
+    }
 
 }
