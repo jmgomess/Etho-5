@@ -24,7 +24,7 @@ public without sharing class Utils {
     //Criar a funcao para jogar os dados
     public static Integer jogarDado(Integer quantidadeLados){
         //return new Random().nextInt(quantidadeLados) + 1;
-        return Integer.valueof(Math.random() * 10)+1;
+        return Integer.valueof(Math.random() * quantidadeLados)+1;
     }
 
     public static Jogador__c obterJogadorAleatorio(List<Jogador__c> jogadores){

@@ -10,7 +10,7 @@ public class AssassinatosHelper {
 
         if(listaRounds.size() > 0){
             Round__c round = listaRounds.get(0);
-            List<Jogador__c> jogadores = round.getJogarores();
+            List<Jogador__c> jogadores = round.Jogadores2__r;
             
             if(jogadores.size() >= 2){
                 Assassinato__c assassinato = verificarConfronto(jogadores);
@@ -30,15 +30,18 @@ public class AssassinatosHelper {
 
         Assassinato__c assassinato;
 
-        booelan continuarJogada = true;
-        boolean contraAtaque = false;
+        Boolean continuarJogada = true;
+        Boolean contraAtaque = false;
 
         //Selecionar 2 jogadores de forma aleatório
         Jogador__c jogadorAtaque = Utils.obterJogadorAleatorio(jogadores);
         System.debug('jogadorAtaque' + JSON.serialize(jogadorAtaque));
 
-        List<Jogador__c> listaAux = jogadores;
-        Jogador__c jogadorDefesa = Utils.obterJogadorAleatorio(listaAux.remove(jogadorAtaque));
+        //TODO remover o jogador para nao duplicar
+        //List<Jogador__c> listaAux = jogadores;
+        //listaAux.remove(jogadorAtaque)
+
+        Jogador__c jogadorDefesa = Utils.obterJogadorAleatorio(jogadores);
         System.debug('jogadorDefesa' + JSON.serialize(jogadorAtaque));
 
         Jogador__c jogadorContraAtaqueAux;
@@ -54,10 +57,10 @@ public class AssassinatosHelper {
             Integer jogadaAtaque = Utils.jogarDado(20);
             System.debug('jogadaAtaque' + JSON.serialize(jogadaAtaque));
             // (1D20 + FORÇA)
-            Integer totalAtaque = jogadaAtaque + jogadorAtaque.Forca__c;
+            Integer totalAtaque = jogadaAtaque + Integer.valueOf(jogadorAtaque.Forca__c);
             System.debug('totalAtaque' + JSON.serialize(totalAtaque));
             //(2D10 + INTELIGENCIA + VELOCIDADE)
-            Integer totalDefesa = Utils.jogarDado(10) + Utils.jogarDado(10) + jogadorDefesa.Inteligencia__c + jogadorDefesa.Velocidade__c;
+            Integer totalDefesa = Utils.jogarDado(10) + Utils.jogarDado(10) + Integer.valueOf(jogadorDefesa.Inteligencia__c) + Integer.valueOf(jogadorDefesa.Velocidade__c);
             System.debug('totalDefesa' + JSON.serialize(totalDefesa));
 
             if(totalAtaque > totalDefesa){
@@ -87,8 +90,8 @@ public class AssassinatosHelper {
 
     private Assassinato__c obterAssassinato(Jogador__c jogadorAtaque, Jogador__c jogadorDefesa){
         Assassinato__c assassinato = new Assassinato__c();
-        assassinato.Assassino__c = jogadorAtaque;
-        assassinato.Assassinado__c = jogadorDefesa;
+        assassinato.Assassino__r = jogadorAtaque;
+        assassinato.Assassinado__r = jogadorDefesa;
         return assassinato;
     }
 

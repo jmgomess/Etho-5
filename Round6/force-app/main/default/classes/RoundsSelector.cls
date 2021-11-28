@@ -2,7 +2,9 @@ public without sharing class RoundsSelector {
 
     public static List<Round__c> selectByRoundsIdsWithJogadores(Set<Id> ids) {
         return [
-            SELECT  Id, TotalJogadoresEliminados__c, PremioTotal__c,
+            //Criar PremioTotal__c nao tem na org
+           // SELECT  Id, TotalJogadoresEliminados__c, PremioTotal__c,
+           SELECT  Id, TotalJogadoresEliminados__c, Premio__c,
                     (
                         SELECT Id, ValorPagar__c, RecordTypeId, RecordType.DeveloperName, Candidato__r.Email__c
                         FROM Jogadores2__r 
