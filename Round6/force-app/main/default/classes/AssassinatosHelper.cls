@@ -32,15 +32,11 @@ public class AssassinatosHelper {
         Boolean contraAtaque = false;
 
         //Selecionar 2 jogadores de forma aleatório
-        Jogador__c jogadorAtaque = Utils.obterJogadorAleatorio(jogadores);
+        Jogador__c jogadorAtaque = selecionarJogador(jogadores, null);
         System.debug('jogadorAtaque ' + JSON.serialize(jogadorAtaque));
 
-        //TODO remover o jogador para nao duplicar
-        //List<Jogador__c> listaAux = jogadores;
-        //listaAux.remove(jogadorAtaque)
-
-        Jogador__c jogadorDefesa = Utils.obterJogadorAleatorio(jogadores);
-        System.debug('jogadorDefesa ' + JSON.serialize(jogadorAtaque));
+        Jogador__C jogadorDefesa = selecionarJogador(jogadores, jogadorAtaque);
+        System.debug('jogadorDefesa ' + JSON.serialize(jogadorDefesa));
 
         Jogador__c jogadorContraAtaqueAux;
 
@@ -53,10 +49,15 @@ public class AssassinatosHelper {
             }
 
             Integer jogadaAtaque = Utils.jogarDado(20);
+            //Teste jogada ataque = 1
+            //jogadaAtaque = 1;
             System.debug('jogadaAtaque ' + JSON.serialize(jogadaAtaque));
+            
+
             // (1D20 + FORÇA)
             Integer totalAtaque = jogadaAtaque + Integer.valueOf(jogadorAtaque.Forca__c);
             System.debug('totalAtaque ' + JSON.serialize(totalAtaque));
+            
             //(2D10 + INTELIGENCIA + VELOCIDADE)
             Integer totalDefesa = Utils.jogarDado(10) + Utils.jogarDado(10) + Integer.valueOf(jogadorDefesa.Inteligencia__c) + Integer.valueOf(jogadorDefesa.Velocidade__c);
             System.debug('totalDefesa ' + JSON.serialize(totalDefesa));
@@ -87,12 +88,24 @@ public class AssassinatosHelper {
 
     private Jogador__c selecionarJogador(List<Jogador__c> jogadores, Jogador__c jogadorExistente){
 
+        System.debug('Entrou selecionarJogador');
+
         Jogador__c novoJogador = Utils.obterJogadorAleatorio(jogadores);
         Boolean selecionarJogador = true;
 
-        //Remover usuário ja selecionado da lista
-        if(jogadorExistente != null && jogadorExistente.Id == novoJogador.Id) {
+        //Teste duplicidade de jogador
+        /*if(jogadorExistente != null){
+            System.debug('Entrou jogadorExistente diferente nulo');
+            novoJogador = jogadorExistente;
+        }*/
 
+        //Remover usuário ja selecionado da lista
+        if(jogadorExistente != null && jogadorExistente.Id == novoJogador.Id){
+
+            System.debug('Entrou jogador duplicado');
+            System.debug('jogadorExistente: ' + JSON.serialize(jogadorExistente));
+            System.debug('novoJogador: ' + JSON.serialize(novoJogador));
+            
             while(selecionarJogador){
                 novoJogador = Utils.obterJogadorAleatorio(jogadores);
 
@@ -100,28 +113,31 @@ public class AssassinatosHelper {
                     selecionarJogador = false;
                 }
             }
+
         }
-  
+        
+        System.debug('novoJogadorSelecionado: ' + JSON.serialize(novoJogador));
         return novoJogador;
     }
 
     private void salvarAssassinato(Jogador__c jogadorAtaque, Jogador__c jogadorDefesa){
         Assassinato__c assassinato = new Assassinato__c();
-        assassinato.Assassino__r = jogadorAtaque;
-        assassinato.Assassinado__r = jogadorDefesa;
-    
+        assassinato.Assassino__c = jogadorAtaque.Id;
+        assassinato.Assassinado__c = jogadorDefesa.Id;
+        assassinato.DataHora__c = Datetime.now();
+        
         System.debug('salvarAssassinato: ' + JSON.serialize(assassinato));
 
-     //   insert assassinato;
+        insert assassinato;
     }
 
-    private void elimiarJogador(Jogador__c jogadorDefesa){
-        jogadorDefesa.Eliminado__c = true;
-        jogadorDefesa.Morreu__c = true;
-        jogadorDefesa.DataMorte__c = System.now();
+    private void elimiarJogador(Jogador__c jogadorEliminado){
+        jogadorEliminado.Eliminado__c = true;
+        jogadorEliminado.Morreu__c = true;
+        jogadorEliminado.DataMorte__c = System.now();
   
-        System.debug('elimiarJogador: ' + JSON.serialize(jogadorDefesa));
-      //  update jogadorDefesa;
+        System.debug('elimiarJogador: ' + JSON.serialize(jogadorEliminado));
+        update jogadorEliminado;
     }
 
 }
