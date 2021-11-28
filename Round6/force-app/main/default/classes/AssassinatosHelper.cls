@@ -85,6 +85,26 @@ public class AssassinatosHelper {
 
     }
 
+    private Jogador__c selecionarJogador(List<Jogador__c> jogadores, Jogador__c jogadorExistente){
+
+        Jogador__c novoJogador = Utils.obterJogadorAleatorio(jogadores);
+        Boolean selecionarJogador = true;
+
+        //Remover usuário ja selecionado da lista
+        if(jogadorExistente != null && jogadorExistente.Id == novoJogador.Id) {
+
+            while(selecionarJogador){
+                novoJogador = Utils.obterJogadorAleatorio(jogadores);
+
+                if(jogadorExistente.Id != novoJogador.Id){
+                    selecionarJogador = false;
+                }
+            }
+        }
+  
+        return novoJogador;
+    }
+
     private void salvarAssassinato(Jogador__c jogadorAtaque, Jogador__c jogadorDefesa){
         Assassinato__c assassinato = new Assassinato__c();
         assassinato.Assassino__r = jogadorAtaque;
