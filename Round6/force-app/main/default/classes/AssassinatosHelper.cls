@@ -13,8 +13,8 @@ public class AssassinatosHelper {
             List<Jogador__c> jogadores = round.Jogadores2__r;
             
             if(jogadores.size() >= 2){
-                Assassinato__c assassinato = verificarConfronto(jogadores);
-                System.debug('assassinato' + JSON.serialize(assassinato));
+                verificarConfronto(jogadores);
+                System.debug('Finalizou verifica confronto');
             }else{
                 System.debug('O round tem menos de 2 jogadores vivos');
             }
@@ -24,25 +24,23 @@ public class AssassinatosHelper {
         
     }
 
-    private Assassinato__c verificarConfronto(List<Jogador__c> jogadores){
+    private void verificarConfronto(List<Jogador__c> jogadores){
 
         System.debug('Entrou verificarConfronto');
-
-        Assassinato__c assassinato;
 
         Boolean continuarJogada = true;
         Boolean contraAtaque = false;
 
         //Selecionar 2 jogadores de forma aleatório
         Jogador__c jogadorAtaque = Utils.obterJogadorAleatorio(jogadores);
-        System.debug('jogadorAtaque' + JSON.serialize(jogadorAtaque));
+        System.debug('jogadorAtaque ' + JSON.serialize(jogadorAtaque));
 
         //TODO remover o jogador para nao duplicar
         //List<Jogador__c> listaAux = jogadores;
         //listaAux.remove(jogadorAtaque)
 
         Jogador__c jogadorDefesa = Utils.obterJogadorAleatorio(jogadores);
-        System.debug('jogadorDefesa' + JSON.serialize(jogadorAtaque));
+        System.debug('jogadorDefesa ' + JSON.serialize(jogadorAtaque));
 
         Jogador__c jogadorContraAtaqueAux;
 
@@ -55,17 +53,18 @@ public class AssassinatosHelper {
             }
 
             Integer jogadaAtaque = Utils.jogarDado(20);
-            System.debug('jogadaAtaque' + JSON.serialize(jogadaAtaque));
+            System.debug('jogadaAtaque ' + JSON.serialize(jogadaAtaque));
             // (1D20 + FORÇA)
             Integer totalAtaque = jogadaAtaque + Integer.valueOf(jogadorAtaque.Forca__c);
-            System.debug('totalAtaque' + JSON.serialize(totalAtaque));
+            System.debug('totalAtaque ' + JSON.serialize(totalAtaque));
             //(2D10 + INTELIGENCIA + VELOCIDADE)
             Integer totalDefesa = Utils.jogarDado(10) + Utils.jogarDado(10) + Integer.valueOf(jogadorDefesa.Inteligencia__c) + Integer.valueOf(jogadorDefesa.Velocidade__c);
-            System.debug('totalDefesa' + JSON.serialize(totalDefesa));
+            System.debug('totalDefesa ' + JSON.serialize(totalDefesa));
 
             if(totalAtaque > totalDefesa){
                 System.debug('totalAtaque maior que defesa');
-                assassinato = obterAssassinato(jogadorAtaque, jogadorDefesa);
+                elimiarJogador(jogadorDefesa);
+                salvarAssassinato(jogadorAtaque, jogadorDefesa);
                 continuarJogada = false;
             }else{
                 System.debug('totalAtaque menor que defesa');
@@ -84,15 +83,25 @@ public class AssassinatosHelper {
         
         }
 
-        return assassinato;
-
     }
 
-    private Assassinato__c obterAssassinato(Jogador__c jogadorAtaque, Jogador__c jogadorDefesa){
+    private void salvarAssassinato(Jogador__c jogadorAtaque, Jogador__c jogadorDefesa){
         Assassinato__c assassinato = new Assassinato__c();
         assassinato.Assassino__r = jogadorAtaque;
         assassinato.Assassinado__r = jogadorDefesa;
-        return assassinato;
+    
+        System.debug('salvarAssassinato: ' + JSON.serialize(assassinato));
+
+     //   insert assassinato;
+    }
+
+    private void elimiarJogador(Jogador__c jogadorDefesa){
+        jogadorDefesa.Eliminado__c = true;
+        jogadorDefesa.Morreu__c = true;
+        jogadorDefesa.DataMorte__c = System.now();
+  
+        System.debug('elimiarJogador: ' + JSON.serialize(jogadorDefesa));
+      //  update jogadorDefesa;
     }
 
 }
