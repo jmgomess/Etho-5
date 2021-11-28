@@ -26,7 +26,7 @@ public without sharing class RoundsSelector {
         ];
     }
 
-    public static List<Round__c> selectRoundsEmAndamento() {
+    public static List<Round__c> selecionarRoundsEmAndamento() {
         return [
             SELECT 
                 Id,

@@ -1,7 +1,7 @@
-public without sharing class AssassinatosHandler {
+public without sharing class AssassinatosHandler{
 
-    public AssassinatosHandler() {
-        new AssassinatosHelper().validarAssassinato();
+    public AssassinatosHandler(){
+        new AssassinatosHelper().verificarAssassinato();
     }
 
 }
