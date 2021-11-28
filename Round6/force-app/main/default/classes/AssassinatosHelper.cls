@@ -64,7 +64,7 @@ public class AssassinatosHelper {
 
             if(totalAtaque > totalDefesa){
                 System.debug('totalAtaque maior que defesa');
-                elimiarJogador(jogadorDefesa);
+                JogadorHelper.elimiarJogador(jogadorDefesa);
                 salvarAssassinato(jogadorAtaque, jogadorDefesa);
                 continuarJogada = false;
             }else{
@@ -129,15 +129,6 @@ public class AssassinatosHelper {
         System.debug('salvarAssassinato: ' + JSON.serialize(assassinato));
 
         insert assassinato;
-    }
-
-    private void elimiarJogador(Jogador__c jogadorEliminado){
-        jogadorEliminado.Eliminado__c = true;
-        jogadorEliminado.Morreu__c = true;
-        jogadorEliminado.DataMorte__c = System.now();
-  
-        System.debug('elimiarJogador: ' + JSON.serialize(jogadorEliminado));
-        update jogadorEliminado;
     }
 
 }
