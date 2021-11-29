@@ -8,7 +8,7 @@ public class AssassinatosHelper {
 
         System.debug('listaRounds: ' + listaRounds.size());
 
-        if(listaRounds.size() > 0){
+        if(!listaRounds.isEmpty()){
             Round__c round = listaRounds.get(0);
             List<Jogador__c> jogadores = round.Jogadores2__r;
             
@@ -35,15 +35,15 @@ public class AssassinatosHelper {
         Jogador__c jogadorAtaque = selecionarJogador(jogadores, null);
         System.debug('jogadorAtaque ' + JSON.serialize(jogadorAtaque));
 
-        Jogador__C jogadorDefesa = selecionarJogador(jogadores, jogadorAtaque);
+        Jogador__c jogadorDefesa = selecionarJogador(jogadores, jogadorAtaque);
         System.debug('jogadorDefesa ' + JSON.serialize(jogadorDefesa));
 
         Jogador__c jogadorContraAtaqueAux;
 
-        while (continuarJogada){
+        while(continuarJogada){
             //Trocar a posicao dos jogadores
             if(contraAtaque){
-                jogadorContraAtaqueAux = jogadorAtaque;+
+                jogadorContraAtaqueAux = jogadorAtaque;
                 jogadorAtaque = jogadorDefesa;
                 jogadorDefesa = jogadorContraAtaqueAux;
             }
@@ -56,6 +56,7 @@ public class AssassinatosHelper {
 
             // (1D20 + FORÇA)
             Integer totalAtaque = jogadaAtaque + Integer.valueOf(jogadorAtaque.Forca__c);
+
             System.debug('totalAtaque ' + JSON.serialize(totalAtaque));
             
             //(2D10 + INTELIGENCIA + VELOCIDADE)

@@ -28,6 +28,7 @@ public without sharing class RoundsSelector {
         ];
     }
 
+    //TODO arrumar o nome do select, parametrizar
     public static List<Round__c> selecionarRoundsEmAndamento() {
         return [
             SELECT 
@@ -35,7 +36,7 @@ public without sharing class RoundsSelector {
                 (SELECT Id, Forca__c, Inteligencia__c, Velocidade__c FROM Jogadores2__r WHERE Eliminado__c = false)
             FROM Round__c
             WHERE Status__c = 'Em Andamento'
-            LIMIT 1
+           // LIMIT 1
         ];
     }
 
