@@ -1,0 +1,24 @@
+<template>
+  <template if:true={loaded}>
+    <div class="container">
+      <div class="container-rounds">
+        <template for:each={rounds} for:item="round">
+          <c-round-container key={round.Id} round={round}></c-round-container>
+        </template>
+      </div>
+      <div class="footer">
+        <lightning-button
+          label="add jogadores"
+          onclick={addJogadores}
+        ></lightning-button>
+        <lightning-button
+          label="remove jogadores"
+          onclick={removeJogadores}
+        ></lightning-button>
+      </div>
+    </div>
+  </template>
+  <template if:false={loaded}>
+    <lightning-spinner size="medium"></lightning-spinner>
+  </template>
+</template>

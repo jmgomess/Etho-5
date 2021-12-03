@@ -1,0 +1,18 @@
+<template>
+  <lightning-input
+    label="FILTRO DE SOBRENOME"
+    onchange={handleChange}
+    data-attribute-name="sobrenome"
+  ></lightning-input>
+
+  <lightning-input
+    label="FILTRO DE IDADE"
+    onchange={handleChange}
+    data-attribute-name="idade"
+  ></lightning-input>
+
+  <template for:each={contatosFiltrados} for:item="contato">
+    <div key={contato.Id}>Nome completo: {contato.Name} {contato.Sobrenome__c}</div>
+  </template>
+
+</template>

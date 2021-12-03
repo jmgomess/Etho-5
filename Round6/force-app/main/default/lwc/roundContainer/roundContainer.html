@@ -1,0 +1,21 @@
+<template>
+  <div class="container" onclick={handleClick}>
+    <div class="title">{round.Name}</div>
+    <div class="subtitle">Lista de jogadores {removeJogadores}</div>
+    <template if:true={toggleList}>
+      <div class="container-jogadores">
+        <template
+          for:each={round.Jogadores2__r}
+          for:item="jogador"
+          for:index="i"
+        >
+          <c-jogador-container
+            key={jogador.Id}
+            jogador={jogador}
+            index={i}
+          ></c-jogador-container>
+        </template>
+      </div>
+    </template>
+  </div>
+</template>
