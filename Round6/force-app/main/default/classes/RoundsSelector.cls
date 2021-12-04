@@ -15,7 +15,7 @@ public without sharing class RoundsSelector {
         ];
     }
 
-    public static List<Round__c> selectRoundsByIdStatusJogadoresVivos(Set<Id> roundsIds, Set<String> statusList) {
+	public static List<Round__c> selectRoundsByIdStatusJogadoresVivos(Set<Id> roundsIds, Set<String> statusList) {
         return [
             SELECT 
                 Id,
@@ -27,7 +27,20 @@ public without sharing class RoundsSelector {
                 AND Status__c IN :statusList
         ];
     }
-
+	
+    public static List<Round__c> selectAllRoundsWithJogadoresNaoEliminados() {
+        return [
+            SELECT                      //Criar no meu objeto
+                Id, Name, Vencedor__c, //PremioTotal__c,
+                (SELECT 
+                    Id, Name, QuantidadeAssassinatos__c, Candidato__r.Name, Morreu__c, Forca__c, Velocidade__c, Inteligencia__c
+                    FROM Jogadores2__r 
+                    WHERE RecordTypeId = :Schema.SObjectType.Jogador__c.getRecordTypeInfosByDeveloperName().get(Label.RECORD_TYPE_DEVELOPER_NAME_JOGADOR_PADRAO).getRecordTypeId())
+            FROM Round__c
+            WHERE Status__c = 'Em Andamento'
+        ];
+    }
+	
     //TODO arrumar o nome do select, parametrizar
     public static List<Round__c> selecionarRoundsEmAndamento() {
         return [
