@@ -2,6 +2,7 @@ import { LightningElement, wire } from "lwc";
 import selectAll from "@salesforce/apex/SimulacaoContainerController.getRoundsJogadores";
 import tentarMatar from "@salesforce/apex/SimulacaoContainerController.tentativaAssassinato";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
+import Jogador__c from "@salesforce/schema/ParticipantesPartida__ChangeEvent.Jogador__c";
 
 export default class JogarContainer extends LightningElement {
   //aux = { Name: "Bla" };
@@ -70,6 +71,8 @@ export default class JogarContainer extends LightningElement {
       .catch((error) => {
         console.log("erro: " + JSON.stringify(error));
       });
+
+      //this.getMaiorAssassino(this.roundSelecionado);
   }
 
   getJogadorById(id) {
@@ -110,4 +113,27 @@ export default class JogarContainer extends LightningElement {
       })
     ];
   }
+
+  get maiorAssassino(){
+    if(this.roundSelecionadoCerto){
+      let jogadoresRound = [...round.Jogadores2__r];
+
+      let maiorValor = 0;
+      let jogadoresMaiorAssassinatos = [...Jogador__c];
+
+      for(let i = 0; i < jogadoresRound.length; i++) {
+        if(jogadoresRound[i].QuantidadeAssassinatos__c >= maiorValor){
+          maiorValor = jogadoresRound[i].QuantidadeAssassinatos__c;
+          
+          jogadoresMaiorAssassinatos.push(jogadoresRound[i]);
+        }
+      }
+
+      return JSON.stringify(jogadoresMaiorAssassinatos);
+    }
+    
+    return;
+    
+  } 
+    
 }
