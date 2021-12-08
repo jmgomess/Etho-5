@@ -129,7 +129,7 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Round_P_gina_de_registro1</content>
+        <content>Round_P_gina_de_registro</content>
         <formFactor>Large</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -137,7 +137,7 @@
     <actionOverrides>
         <actionName>View</actionName>
         <comment>Action override created by Lightning App Builder during activation.</comment>
-        <content>Round_P_gina_de_registro1</content>
+        <content>Round_P_gina_de_registro</content>
         <formFactor>Small</formFactor>
         <skipRecordTypeSelect>false</skipRecordTypeSelect>
         <type>Flexipage</type>
@@ -160,7 +160,7 @@
     <enableSharing>false</enableSharing>
     <enableStreamingApi>false</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <gender>Feminine</gender>
+    <gender>Masculine</gender>
     <label>Round</label>
     <nameField>
         <displayFormat>Round-{00000}</displayFormat>
@@ -169,7 +169,7 @@
         <type>AutoNumber</type>
     </nameField>
     <pluralLabel>Rounds</pluralLabel>
-    <searchLayouts></searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
+    <searchLayouts/>
+    <sharingModel>Private</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

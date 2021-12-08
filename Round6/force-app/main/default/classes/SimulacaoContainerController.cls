@@ -16,9 +16,9 @@ public with sharing class SimulacaoContainerController {
             if (ass != null) {
                 insert ass;
             
-                /* Jogador__c jog = new Jogador__c(Id=ass.Assassinado__c);
+                Jogador__c jog = new Jogador__c(Id=ass.Assassinado__c);
                 jog.Morreu__c = true;
-                update jog; */
+                update jog;
             }      
             
             AssassinatoWrapper aw = new AssassinatoWrapper();

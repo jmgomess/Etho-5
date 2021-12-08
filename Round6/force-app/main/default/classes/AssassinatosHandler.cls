@@ -75,5 +75,4 @@ public without sharing class AssassinatosHandler{
             DataHora__c =  System.now()
         );
     }
-
 }

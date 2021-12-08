@@ -12,6 +12,16 @@ public without sharing class JogadoresTriggerHandler {
     
 
     public static void afterUpdate(List<Jogador__c> records, Map<Id, Jogador__c> oldMap) {
+
+        /*
+
+• records = registros q sofreram update (é after)
+• oldMap = os mesmos registros, antes do update
+• recordsRoundsMap = ids dos rounds dos jogadores em records
+• roundsMap = map com um select que pega todos os jogadores não eliminados dos rounds de recordsRoundsMap
+• roundsToUpdate = map em branco, será preenchido quando verificar quais os rounds que possuem vencedor.
+Percorre a lista de registros que sofreram alteração
+        */
         Set<String> statusList = new Set<String>{'Em Andamento'};
         Map<Id, Round__c> roundsMap = new Map<Id, Round__c>(RoundsSelector.selectRoundsByIdStatusJogadoresVivos(Utils.getSetIds(records, Jogador__c.Round__c), statusList));
         System.debug('roundsMap: ' + JSON.serialize(roundsMap));

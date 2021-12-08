@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>VotosParar__c</fullName>
-    <description>Votos para</description>
+    <description>quantidade de votos para encerrar o round</description>
     <externalId>false</externalId>
+    <inlineHelpText>quantidade de votos para encerrar o round</inlineHelpText>
     <label>Votos Parar</label>
     <summaryFilterItems>
         <field>Jogador__c.RetornarJogo__c</field>
@@ -12,7 +13,7 @@
     <summaryFilterItems>
         <field>Jogador__c.Eliminado__c</field>
         <operation>equals</operation>
-        <value>True</value>
+        <value>False</value>
     </summaryFilterItems>
     <summaryForeignKey>Jogador__c.Round__c</summaryForeignKey>
     <summaryOperation>count</summaryOperation>

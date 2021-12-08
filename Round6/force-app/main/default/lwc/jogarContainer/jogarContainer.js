@@ -2,7 +2,6 @@ import { LightningElement, wire } from "lwc";
 import selectAll from "@salesforce/apex/SimulacaoContainerController.getRoundsJogadores";
 import tentarMatar from "@salesforce/apex/SimulacaoContainerController.tentativaAssassinato";
 import { ShowToastEvent } from "lightning/platformShowToastEvent";
-import Jogador__c from "@salesforce/schema/ParticipantesPartida__ChangeEvent.Jogador__c";
 
 export default class JogarContainer extends LightningElement {
   //aux = { Name: "Bla" };
@@ -71,8 +70,6 @@ export default class JogarContainer extends LightningElement {
       .catch((error) => {
         console.log("erro: " + JSON.stringify(error));
       });
-
-      //this.getMaiorAssassino(this.roundSelecionado);
   }
 
   getJogadorById(id) {

@@ -2,7 +2,7 @@
 <RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MembroStaff</fullName>
     <active>true</active>
-    <description>Jogador menbo da Staff</description>
+    <description>Jogador membro da Staff</description>
     <label>Membro da Staff</label>
     <picklistValues>
         <picklist>RetornarJogo__c</picklist>

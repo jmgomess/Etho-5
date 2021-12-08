@@ -14,9 +14,9 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Em Definiçao</fullName>
+                <fullName>Em Definição</fullName>
                 <default>true</default>
-                <label>Em Definiçao</label>
+                <label>Em Definição</label>
             </value>
             <value>
                 <fullName>Coletando Candidatos</fullName>
