@@ -112,25 +112,28 @@ export default class JogarContainer extends LightningElement {
   }
 
   get maiorAssassino(){
-    if(this.roundSelecionadoCerto){
+    let round = this.roundSelecionadoCerto;
+
+    if(round){
+ 
       let jogadoresRound = [...round.Jogadores2__r];
 
       let maiorValor = 0;
-      let jogadoresMaiorAssassinatos = [...Jogador__c];
+      let jogadoresMaiorAssassinatos = [];
 
       for(let i = 0; i < jogadoresRound.length; i++) {
         if(jogadoresRound[i].QuantidadeAssassinatos__c >= maiorValor){
           maiorValor = jogadoresRound[i].QuantidadeAssassinatos__c;
-          
+
           jogadoresMaiorAssassinatos.push(jogadoresRound[i]);
         }
       }
 
       return JSON.stringify(jogadoresMaiorAssassinatos);
     }
-    
+
     return;
-    
+
   } 
     
 }
