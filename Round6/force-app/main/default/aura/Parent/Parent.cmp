@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+  <aura:attribute
+    name="mensagem"
+    type="String"
+    default="qualquer string neste default uhum"
+  ></aura:attribute>
+  <aura:handler
+    name="childrenToParent"
+    event="c:ChildrenToParent"
+    action="{!c.handleComponentEvent}"
+  ></aura:handler>
+  {!v.mensagem}
+  <c:Children></c:Children>
+</aura:component>

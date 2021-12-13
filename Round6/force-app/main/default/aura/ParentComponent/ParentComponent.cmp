@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global">
+  <aura:handler
+    name="chdEvt"
+    event="c:ChildrenEvent"
+    action="{!c.handleComponentEvent}"
+  />
+
+  <aura:attribute
+    name="parentAttr"
+    type="String"
+    default="valor do pai"
+  ></aura:attribute>
+
+  <aura:attribute name="message" type="String"></aura:attribute>
+  <aura:attribute name="status" type="Integer"></aura:attribute>
+
+  <div class="container-geral">
+    <div>
+      <c:ChildrenComponent attr="{!v.parentAttr}"></c:ChildrenComponent>
+      <br />
+      {!v.message}
+      <br />
+      {!v.status}
+    </div>
+  </div>
+</aura:component>

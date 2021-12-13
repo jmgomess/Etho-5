@@ -1,0 +1,18 @@
+<aura:component>
+  <aura:handler
+    name="chdEvt"
+    event="c:ChildrenEvent"
+    action="{!c.handleComponentEvent}"
+  />
+
+  <aura:attribute
+    name="attr"
+    type="String"
+    default="valor default do filho"
+  ></aura:attribute>
+
+  
+  <c:GrandChildrenComponent></c:GrandChildrenComponent>
+
+  [[[{!v.attr}]]]
+</aura:component>

@@ -1,0 +1,7 @@
+<aura:component>
+    <aura:attribute name="mensagem" type="String" default="mensagem do filho"></aura:attribute>
+    <aura:registerEvent name="childrenToParent" type="c:ChildrenToParent"></aura:registerEvent>
+    <div>
+        <lightning:input label="mensagem" type="text" onchange="{!c.handleChange}"></lightning:input>
+    </div>
+</aura:component>	

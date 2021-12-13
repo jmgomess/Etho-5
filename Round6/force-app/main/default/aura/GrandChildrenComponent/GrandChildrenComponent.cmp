@@ -1,0 +1,4 @@
+<aura:component>
+  <aura:registerEvent name="chdEvt" type="c:ChildrenEvent" />
+  <lightning:button label="dispara evento" onclick="{!c.clickButton}" />
+</aura:component>	
