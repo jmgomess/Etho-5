@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Morreu__c</fullName>
     <defaultValue>false</defaultValue>
-    <description>Campo que conreola se morreu</description>
+    <description>Campo que controla se o(a) SER HUMANO(A) MORREU</description>
     <externalId>false</externalId>
-    <inlineHelpText>Campo que conreola se morreu</inlineHelpText>
+    <inlineHelpText>Campo que controla se o(a) SER HUMANO(A) MORREU</inlineHelpText>
     <label>Morreu</label>
     <trackFeedHistory>false</trackFeedHistory>
     <trackHistory>false</trackHistory>

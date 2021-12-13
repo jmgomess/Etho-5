@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Round__c</fullName>
-    <description>Usado pra informar o jogo em que o participante jogou.</description>
+    <description>Usado para informar o round que o jogador participou</description>
     <externalId>false</externalId>
-    <inlineHelpText>Usado pra informar o jogo em que o participante jogou.</inlineHelpText>
+    <inlineHelpText>Usado para informar o round que o jogador participou</inlineHelpText>
     <label>Round</label>
     <referenceTo>Round__c</referenceTo>
     <relationshipLabel>Jogadores</relationshipLabel>

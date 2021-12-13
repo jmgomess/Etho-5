@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>DataMorte__c</fullName>
-    <description>Usado para a data da morte</description>
+    <description>Usado parar a data da morte</description>
     <externalId>false</externalId>
     <inlineHelpText>Data da morte do jogador</inlineHelpText>
     <label>Data da Morte</label>

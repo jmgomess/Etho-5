@@ -2,9 +2,9 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>MembroStaff__c</fullName>
     <deleteConstraint>SetNull</deleteConstraint>
-    <description>Usando quando jogador é um membro da staff</description>
+    <description>Usado quando o jogador é um membro da staff</description>
     <externalId>false</externalId>
-    <inlineHelpText>Jogador é um membro da staff</inlineHelpText>
+    <inlineHelpText>Informe o jogador membro da staff</inlineHelpText>
     <label>Membro da Staff</label>
     <referenceTo>User</referenceTo>
     <relationshipName>Jogadores</relationshipName>

@@ -38,6 +38,12 @@
                 <default>false</default>
                 <label>Finalizado</label>
             </value>
+            <value>
+                <fullName>jujuba</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>jujuba</label>
+            </value>
         </valueSetDefinition>
     </valueSet>
 </CustomField>

@@ -2,6 +2,13 @@
 <ListView xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>JogadoresRemanescentes</fullName>
     <columns>NAME</columns>
-    <filterScope>Mine</filterScope>
-    <label>Jogadores Remanescentes</label>
+    <columns>Candidato__c</columns>
+    <columns>Round__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Eliminado__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Jogadores Remanescente</label>
 </ListView>

@@ -3,7 +3,9 @@
     <fullName>All</fullName>
     <columns>NAME</columns>
     <columns>Candidato__c</columns>
+    <columns>MembroStaff__c</columns>
     <columns>Eliminado__c</columns>
+    <columns>RECORDTYPE</columns>
     <filterScope>Everything</filterScope>
     <label>Tudo</label>
 </ListView>

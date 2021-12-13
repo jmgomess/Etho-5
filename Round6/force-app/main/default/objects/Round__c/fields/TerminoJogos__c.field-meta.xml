@@ -3,7 +3,7 @@
     <fullName>TerminoJogos__c</fullName>
     <description>Data de término dos jogos.</description>
     <externalId>false</externalId>
-    <inlineHelpText>Data de término dos jogos.</inlineHelpText>
+    <inlineHelpText>Data de término dos jogos</inlineHelpText>
     <label>Término dos Jogos</label>
     <required>false</required>
     <trackFeedHistory>false</trackFeedHistory>

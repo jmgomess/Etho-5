@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>TotalJogadoresEliminados__c</fullName>
-    <description>Usado para informar o total de jogadores eliminados</description>
+    <description>Usado parar informar o total de jogadores eliminados</description>
     <externalId>false</externalId>
     <inlineHelpText>Total de jogadores eliminados</inlineHelpText>
     <label>Total de Jogadores Eliminados</label>
