@@ -1,0 +1,7 @@
+<aura:component>
+
+    <aura:attribute name="attr" type="String" default="valor default do filho"></aura:attribute>
+
+    [[[{!v.attr}]]]
+
+</aura:component>	

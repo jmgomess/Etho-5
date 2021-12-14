@@ -1,0 +1,7 @@
+<aura:component>
+  <aura:attribute name="parentAttr" type="String" default="valor do pai"></aura:attribute>
+
+  <div class="container-geral">
+    <c:ComponenteFilho attr="{}"></c:ComponenteFilho>
+  </div>
+</aura:component>

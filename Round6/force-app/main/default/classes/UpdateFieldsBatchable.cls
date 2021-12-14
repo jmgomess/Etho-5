@@ -1,6 +1,6 @@
 public with sharing class UpdateFieldsBatchable implements Database.Batchable<sObject>, Database.Stateful {
     
-    String query;
+    String query = 'SELECT Id, Name, TerminoJogos__c, InicioJogos__c FROM Round__c WHERE Id in :id';
     Map<SObjectField, Object> mapa;
 
     public UpdateFieldsBatchable(String query, Map<SObjectField, Object> mapa) {
@@ -9,12 +9,12 @@ public with sharing class UpdateFieldsBatchable implements Database.Batchable<sO
     }
 
     public Database.QueryLocator start(Database.BatchaBleContext BC) {
-        System.debug('PASSOU Database.QueryLocator');
+        System.debug('Metodo Database.QueryLocator');
         return Database.getQueryLocator(query);
     }
 
     public void execute(Database.BatchableContext BC, List<SObject> scope) {
-        System.debug('ENTROU execute');
+        System.debug('Metodo execute');
         System.debug('SCOPE: ' + JSON.serialize(scope));
 
         for (SObject record : scope) {
@@ -26,18 +26,12 @@ public with sharing class UpdateFieldsBatchable implements Database.Batchable<sO
 
         //update scope;
 
-        /*for (Integer i = 0; i < mapSize; i++) {
-
-
-            SObject objeto = scope.get(i);
-            Schema.SObjectField field = ;
-
-            objeto.put(), arg1)
-        }*/
     }
 
     public void finish(Database.BatchableContext BC) {
-        System.debug('PASSOU finish');
+        System.debug('Metodo finish');
         //sendLog();
     }
+
+    
 }
